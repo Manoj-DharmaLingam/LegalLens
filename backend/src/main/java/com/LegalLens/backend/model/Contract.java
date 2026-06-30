@@ -38,13 +38,15 @@ public class Contract {
         status = "Pending";
     }
     
-    public Contract(String contractName , String contractType ,String description){
+    public Contract(String contractName , String contractType ,String description,User uploadedBy){
         this();
         this.contractName = contractName;
         this.contractType = contractType;
         this.description = description;
+        this.uploadedBy = uploadedBy;
     }
-    public Long getId() { return id; }
+    public Long getId() { 
+        return id; }
     public void setId(Long id) { 
         this.id = id; }
 

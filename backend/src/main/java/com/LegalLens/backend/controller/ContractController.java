@@ -26,7 +26,7 @@ import com.LegalLens.backend.service.ContractService;
 @RequestMapping("/api/contracts")
 public class ContractController{
 
-    private ContractService contractService;
+    private final ContractService contractService;
 
     public ContractController(ContractService contractService){
         this.contractService = contractService;

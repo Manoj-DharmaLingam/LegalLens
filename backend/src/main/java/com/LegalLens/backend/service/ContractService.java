@@ -33,7 +33,7 @@ public class ContractService {
         return contractRepository.findByUploadedBy(user);
     }
 
-    public Contract getContractById(Long id){
+    public Contract getContractById(long id){
         return contractRepository.findById(id).orElseThrow();
     }    
 

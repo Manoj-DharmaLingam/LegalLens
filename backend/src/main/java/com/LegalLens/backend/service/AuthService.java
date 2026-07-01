@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.LegalLens.backend.dto.JwtAuthenticationResponse;
 import com.LegalLens.backend.dto.LoginRequest;
@@ -13,6 +14,7 @@ import com.LegalLens.backend.model.User;
 import com.LegalLens.backend.repository.UserRepository;
 import com.LegalLens.backend.security.JwtUtil;
 
+@Service
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;

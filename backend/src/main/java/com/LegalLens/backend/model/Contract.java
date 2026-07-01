@@ -37,13 +37,15 @@ public class Contract {
         uploadDate = LocalDateTime.now();
         status = "Pending";
     }
+    private String fileUrl; 
     
-    public Contract(String contractName , String contractType ,String description,User uploadedBy){
+    public Contract(String contractName , String contractType ,String description,User uploadedBy,String fileUrl){
         this();
         this.contractName = contractName;
         this.contractType = contractType;
         this.description = description;
         this.uploadedBy = uploadedBy;
+        this.fileUrl = fileUrl;
     }
     public Long getId() { 
         return id; }
@@ -61,6 +63,14 @@ public class Contract {
     public String getDescription() { 
         return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public String getFileUrl() {
+        return this.fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
 
     public User getUploadedBy() { 
         return uploadedBy; }

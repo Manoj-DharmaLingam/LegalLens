@@ -8,5 +8,5 @@ import com.LegalLens.backend.model.Clause;
 import com.LegalLens.backend.model.Contract;
 
 public interface ClauseRepository extends JpaRepository<Clause, Long>{
-    List<Clause> findByComment(Contract contract);
+    List<Clause> findByContract(Contract contract);
 }

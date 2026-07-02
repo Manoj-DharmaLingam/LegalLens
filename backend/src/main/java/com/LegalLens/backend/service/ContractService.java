@@ -56,7 +56,7 @@ public class ContractService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
 
-        // Use standard system properties to target a reliable absolute system path folder
+  
         String userHome = System.getProperty("user.home");
         File uploadDirectory = new File(userHome + File.separator + "legallens_uploads");
         

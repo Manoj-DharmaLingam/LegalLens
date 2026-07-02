@@ -93,7 +93,6 @@ public class ClauseService {
                 clause.setContent(snippet);
                 clause.setRiskLevel(riskLevel);
                 clause.setContract(contract);
-
                 detectedClauses.add(clause);
             }
         }

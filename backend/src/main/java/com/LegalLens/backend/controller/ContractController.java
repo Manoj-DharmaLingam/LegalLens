@@ -36,13 +36,13 @@ public class ContractController {
     }
 
     @GetMapping("/{username}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER') or authentication.name == #username")
+    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER','CLIENT')")
     public ResponseEntity<List<Contract>> getMethodByUsername(@PathVariable String username) {
         return ResponseEntity.ok(contractService.getContractByUser(username));
     }
 
     @GetMapping("/id/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER') or @contractService.isOwner(#id, authentication.name)")
+    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER','CLIENT')")
     public ResponseEntity<Contract> getMethodById(@PathVariable long id) {
         return ResponseEntity.ok(contractService.getContractById(id));
     }

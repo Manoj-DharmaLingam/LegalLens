@@ -24,7 +24,6 @@ public class JwtUtil {
         Map<String,Object> claims = new HashMap<>();
         claims.put("role",userDetails.getAuthorities());
         return createToken(claims,userDetails.getUsername());
-        
     }
 
      private String createToken(Map<String,Object> claims , String username){
@@ -61,8 +60,7 @@ public class JwtUtil {
      public Boolean isTokenExpired(String token){
         return extractExpiration(token).before(new Date());
      }
-
-
+     
      public Boolean validateToken(String token , UserDetails userDetails){
          String extractedUsername = extractUsername(token);
          return (extractedUsername.equals(userDetails.getUsername()) && !isTokenExpired(token));

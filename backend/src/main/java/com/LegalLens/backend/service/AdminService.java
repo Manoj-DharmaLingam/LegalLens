@@ -33,7 +33,7 @@ public class AdminService {
 
     public void deleteUser(long id) {
         if (!userRepository.existsById(id)) {
-            throw new ResourceNotFoundException("User not found with id: " + id);
+            throw new ResourceNotFoundException("I go through the DB Guess what? I cant find the user!!!: " + id);
         }
         userRepository.deleteById(id);
     }

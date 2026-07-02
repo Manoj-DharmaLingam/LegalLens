@@ -34,7 +34,7 @@ public class CommentController {
     }
 
     @GetMapping("/{contractId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER') or @contractService.isOwner(#contractId, authentication.name)")
+    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER','CLIENT')")
     public ResponseEntity<List<Comment>> getComments(@PathVariable Long contractId) {
         return ResponseEntity.ok(commentService.getCommentsByContract(contractId));
     }

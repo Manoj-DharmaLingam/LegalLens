@@ -47,11 +47,6 @@ public class ContractService {
         return contractRepository.save(existingcontract);
     }
 
-    public Boolean isOwner(Long id, String username) {
-        Contract contract = getContractById(id);
-        return contract.getUploadedBy().getUsername().equals(username);
-    }
-
     public Contract uploadContract(MultipartFile file, String username, String contractName, String contractType, String description) throws IOException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));

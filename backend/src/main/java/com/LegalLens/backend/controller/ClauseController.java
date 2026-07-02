@@ -27,7 +27,6 @@ public class ClauseController {
     public ClauseController(ClauseService clauseService) {
         this.clauseService = clauseService;
     }
-
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER','CLIENT')")
     public ResponseEntity<List<Clause>> getClauses(@RequestParam long contractId) {

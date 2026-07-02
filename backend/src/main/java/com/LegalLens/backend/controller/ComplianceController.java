@@ -32,13 +32,13 @@ public class ComplianceController {
     }
 
     @PostMapping("/check")
-    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER') or @contractService.isOwner(#contractId, authentication.name)")
+    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER','USER')")
     public ResponseEntity<ComplianceResult> checkCompliance(@RequestParam Long contractId) {
         return ResponseEntity.ok(complianceService.checkCompliance(contractId));
     }
 
     @GetMapping("/results/{contractId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER') or @contractService.isOwner(#contractId, authentication.name)")
+    @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER','USER')")
     public ResponseEntity<ComplianceResult> getResult(@PathVariable Long contractId) {
         return ResponseEntity.ok(complianceService.getResultByContract(contractId));
     }

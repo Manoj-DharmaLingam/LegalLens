@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegalLens — Reports</title>
+<link rel="stylesheet" href="../css/main.css">
+<style>
+@media print {
+  .sidebar, .topbar, #print-btn { display:none !important; }
+  .content { padding:0; background:#fff; }
+}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <div id="sidebar-slot"></div>
+  <div class="main-col">
+    <div id="topbar-slot"></div>
+    <main class="content">
+      <div class="page-head" style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <span class="eyebrow">Portfolio</span>
+          <h1>Compliance &amp; Risk Reports</h1>
+        </div>
+        <button class="btn btn-gold" id="print-btn">&#8593; Print Report</button>
+      </div>
+
+      <div class="grid grid-3" id="report-stats" style="margin-bottom:24px;"></div>
+
+      <div class="card">
+        <div class="card-head"><h3>Compliance Analysis Summary</h3></div>
+        <div id="report-table-wrap">
+          <div class="loading-row"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+<script src="../store/authStore.js"></script>
+<script src="../services/api.js"></script>
+<script src="../services/contractService.js"></script>
+<script src="../js/toast.js"></script>
+<script src="../js/render-helpers.js"></script>
+<script src="../layout/MainLayout.js"></script>
+<script src="./ReportsPage.js"></script>
+</body>
+</html>

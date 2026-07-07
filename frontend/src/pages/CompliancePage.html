@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegalLens — Compliance</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <div id="sidebar-slot"></div>
+  <div class="main-col">
+    <div id="topbar-slot"></div>
+    <main class="content">
+      <div class="page-head">
+        <span class="eyebrow">Portfolio</span>
+        <h1>Compliance Overview</h1>
+        <p>Every filing's standing at a glance — open one for the full breakdown.</p>
+      </div>
+
+      <div class="card">
+        <div id="compliance-table-wrap">
+          <div class="loading-row"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+<script src="../store/authStore.js"></script>
+<script src="../services/api.js"></script>
+<script src="../services/contractService.js"></script>
+<script src="../js/toast.js"></script>
+<script src="../js/render-helpers.js"></script>
+<script src="../layout/MainLayout.js"></script>
+<script src="./CompliancePage.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegalLens — Register</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="brand-mark">LL</div>
+      <h1>Join LegalLens</h1>
+      <p>Contract Clause &amp; Compliance Analyzer</p>
+    </div>
+
+    <form id="register-form" novalidate>
+      <div class="form-row" id="row-fullName">
+        <label for="fullName">Full name</label>
+        <input class="form-control" type="text" id="fullName" name="fullName" placeholder="e.g. Jordan Ellis">
+        <div class="form-error">Full name is required</div>
+      </div>
+
+      <div class="form-row" id="row-username">
+        <label for="username">Username</label>
+        <input class="form-control" type="text" id="username" name="username" placeholder="Choose a username">
+        <div class="form-error">Username is required</div>
+      </div>
+
+      <div class="form-row" id="row-email">
+        <label for="email">Email</label>
+        <input class="form-control" type="email" id="email" name="email" placeholder="you@company.com">
+        <div class="form-error">A valid email is required</div>
+      </div>
+
+      <div class="form-row" id="row-password">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" id="password" name="password" placeholder="Create a password">
+        <div class="form-error">Password is required</div>
+      </div>
+
+      <div class="form-row" id="row-role">
+        <label for="role">Role</label>
+        <select class="form-control" id="role" name="role">
+          <option value="ROLE_CLIENT">Client</option>
+          <option value="ROLE_LEGAL_REVIEWER">Legal Reviewer</option>
+          <option value="ROLE_ADMIN">Admin</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" id="register-submit">Register</button>
+    </form>
+
+    <div class="auth-foot">
+      Already have an account? <a href="./LoginPage.html" class="link-inline">log in</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+<script src="../store/authStore.js"></script>
+<script src="../services/api.js"></script>
+<script src="../services/authService.js"></script>
+<script src="../js/toast.js"></script>
+<script src="./RegisterPage.js"></script>
+</body>
+</html>

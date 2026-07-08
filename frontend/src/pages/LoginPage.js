@@ -47,7 +47,6 @@
       })
       .catch((error) => {
         message.error(RenderHelpersFallback(error));
-        document.getElementById('password').value = '';
       })
       .finally(() => {
         submitBtn.disabled = false;

@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,11 +51,11 @@ public class ContractController {
     @PreAuthorize("hasAnyRole('LEGAL_REVIEWER', 'CLIENT')")
     public ResponseEntity<Contract> uploadContract(
             @RequestParam("file") MultipartFile file,
-            @RequestParam String username,
+            Authentication authentication,
             @RequestParam String contractName,
             @RequestParam String contractType,
             @RequestParam String description) throws IOException {
-        return ResponseEntity.ok(contractService.uploadContract(file, username, contractName, contractType, description));
+        return ResponseEntity.ok(contractService.uploadContract(file, authentication.getName(), contractName, contractType, description));
     }
 
     @DeleteMapping("/{id}")
@@ -65,9 +65,9 @@ public class ContractController {
         return ResponseEntity.ok("Contract deleted successfully");
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER')")
-    public ResponseEntity<Contract> putMethodName(@PathVariable Long id, @RequestBody String status) {
+    public ResponseEntity<Contract> putMethodName(@PathVariable Long id, @RequestParam String status) {
         return ResponseEntity.ok(contractService.updateStatus(id, status));
     }
 }

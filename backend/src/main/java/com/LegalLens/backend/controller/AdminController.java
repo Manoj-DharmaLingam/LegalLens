@@ -1,6 +1,7 @@
 package com.LegalLens.backend.controller;
 
 import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -80,5 +81,10 @@ public class AdminController {
     public ResponseEntity<Void> deleteRule(@PathVariable long id) {
         adminService.deleteRule(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/activity")
+    public ResponseEntity<List<String>> getActivityLogs() {
+        return ResponseEntity.ok(List.of());
     }
 }

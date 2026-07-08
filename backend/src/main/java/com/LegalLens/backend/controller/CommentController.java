@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LegalLens.backend.model.Comment;
@@ -27,7 +28,7 @@ public class CommentController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'LEGAL_REVIEWER','CLIENT')")
-    public ResponseEntity<Comment> addComment(@RequestBody Long contractId,
+    public ResponseEntity<Comment> addComment(@RequestParam Long contractId,
                                         @RequestBody String content,
                                         Authentication authentication) {
         return ResponseEntity.ok(commentService.addComment(contractId, content, authentication.getName()));

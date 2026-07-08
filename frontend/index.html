@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LegalLens</title>
+<script>
+  var token = localStorage.getItem('token');
+  window.location.replace(token ? './src/pages/Dashboard.html' : './src/pages/LoginPage.html');
+</script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegalLens — Admin Panel</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <div id="sidebar-slot"></div>
+  <div class="main-col">
+    <div id="topbar-slot"></div>
+    <main class="content">
+      <div class="page-head">
+        <span class="eyebrow">Management</span>
+        <h1>Admin Control Panel</h1>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="users">Users</button>
+        <button class="tab-btn" data-tab="templates">Clause Templates</button>
+        <button class="tab-btn" data-tab="rules">Compliance Rules</button>
+        <button class="tab-btn" data-tab="activity">System Activity</button>
+      </div>
+
+      <div class="card">
+        <div class="tab-panel active" id="tab-users">
+          <div class="loading-row"><div class="spinner"></div></div>
+        </div>
+        <div class="tab-panel" id="tab-templates">
+          <div class="card-head"><h3>Clause Templates</h3><button class="btn btn-gold btn-sm" id="add-template-btn">+ Add Template</button></div>
+          <div id="templates-body"><div class="loading-row"><div class="spinner"></div></div></div>
+        </div>
+        <div class="tab-panel" id="tab-rules">
+          <div class="card-head"><h3>Compliance Rules</h3><button class="btn btn-gold btn-sm" id="add-rule-btn">+ Add Rule</button></div>
+          <div id="rules-body"><div class="loading-row"><div class="spinner"></div></div></div>
+        </div>
+        <div class="tab-panel" id="tab-activity">
+          <div class="loading-row"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Template modal -->
+<div class="modal-backdrop" id="template-modal-backdrop">
+  <div class="modal">
+    <h3 id="template-modal-title">Add Clause Template</h3>
+    <form id="template-form">
+      <div class="form-row"><label for="tplName">Name</label><input class="form-control" id="tplName"></div>
+      <div class="form-row"><label for="tplCategory">Category</label><input class="form-control" id="tplCategory" placeholder="e.g. Payment, Liability"></div>
+      <div class="form-row"><label for="tplContent">Default Content</label><textarea class="form-control" id="tplContent"></textarea></div>
+      <div class="form-row">
+        <label for="tplRisk">Recommended Risk Level</label>
+        <select class="form-control" id="tplRisk"><option>LOW</option><option>MEDIUM</option><option>HIGH</option></select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="template-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Template</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Rule modal -->
+<div class="modal-backdrop" id="rule-modal-backdrop">
+  <div class="modal">
+    <h3 id="rule-modal-title">Add Compliance Rule</h3>
+    <form id="rule-form">
+      <div class="form-row"><label for="ruleName">Rule Name</label><input class="form-control" id="ruleName"></div>
+      <div class="form-row"><label for="ruleDescription">Description</label><textarea class="form-control" id="ruleDescription"></textarea></div>
+      <div class="form-row">
+        <label for="ruleSeverity">Severity Level</label>
+        <select class="form-control" id="ruleSeverity"><option>LOW</option><option>MEDIUM</option><option>HIGH</option></select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="rule-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Rule</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+<script src="../store/authStore.js"></script>
+<script src="../services/api.js"></script>
+<script src="../services/adminService.js"></script>
+<script src="../js/toast.js"></script>
+<script src="../js/render-helpers.js"></script>
+<script src="../layout/MainLayout.js"></script>
+<script src="./AdminDashboard.js"></script>
+</body>
+</html>

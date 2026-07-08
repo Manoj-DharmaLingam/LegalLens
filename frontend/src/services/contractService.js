@@ -3,10 +3,20 @@
  */
 const contractService = {
   getContracts() {
-    return api.get('/contracts').then(res => res.data);
+    const state = authStore.getState();
+    if (state.user?.role === 'ROLE_ADMIN' || state.user?.role === 'ROLE_LEGAL_REVIEWER') {
+      return api.get('/contracts').then(res => res.data);
+    }
+
+    const username = state.user?.username;
+    if (!username) {
+      return Promise.reject(new Error('Missing authenticated user'));
+    }
+
+    return api.get(`/contracts/${encodeURIComponent(username)}`).then(res => res.data);
   },
   getContract(id) {
-    return api.get(`/contracts/${id}`).then(res => res.data);
+    return api.get(`/contracts/id/${id}`).then(res => res.data);
   },
   uploadContract(values, file) {
     const formData = new FormData();

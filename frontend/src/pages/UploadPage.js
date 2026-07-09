@@ -34,9 +34,19 @@
   const form = document.getElementById('upload-form');
   const submitBtn = document.getElementById('upload-submit');
 
+  function getInputValue(id, fallback = '') {
+    const element = document.getElementById(id);
+    return element ? element.value.trim() : fallback;
+  }
+
+  function getOptionalInputValue(id, fallback = '') {
+    const element = document.getElementById(id);
+    return element ? element.value : fallback;
+  }
+
   function validate() {
     let ok = true;
-    const name = document.getElementById('contractName').value.trim();
+    const name = getInputValue('contractName');
     document.getElementById('row-contractName').classList.toggle('invalid', !name);
     if (!name) ok = false;
     if (!selectedFile) { document.getElementById('row-file').classList.add('invalid'); ok = false; }
@@ -48,15 +58,15 @@
     if (!validate()) return;
 
     const values = {
-      contractName: document.getElementById('contractName').value.trim(),
-      contractType: document.getElementById('contractType').value,
-      description: document.getElementById('description').value.trim(),
-      firstParty: document.getElementById('firstParty').value.trim(),
-      secondParty: document.getElementById('secondParty').value.trim(),
-      startDate: document.getElementById('startDate').value,
-      endDate: document.getElementById('endDate').value,
-      contractValue: parseFloat(document.getElementById('contractValue').value) || 0,
-      jurisdiction: document.getElementById('jurisdiction').value
+      contractName: getInputValue('contractName'),
+      contractType: getOptionalInputValue('contractType'),
+      description: getInputValue('description'),
+      firstParty: getInputValue('firstParty'),
+      secondParty: getInputValue('secondParty'),
+      startDate: getOptionalInputValue('startDate'),
+      endDate: getOptionalInputValue('endDate'),
+      contractValue: parseFloat(getOptionalInputValue('contractValue')) || 0,
+      jurisdiction: getOptionalInputValue('jurisdiction')
     };
 
     submitBtn.disabled = true;

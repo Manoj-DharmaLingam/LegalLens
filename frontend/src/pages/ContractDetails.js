@@ -19,10 +19,16 @@
     Promise.all([
       contractService.getContract(contractId),
       clauseService.getClauses(contractId),
-      commentService.getComments(contractId)
+      commentService.getComments(contractId),
+      complianceService.getResults(contractId)
     ])
-      .then(([c, cl, cm]) => {
-        contract = c; clauses = cl; comments = cm;
+      .then(([c, cl, cm, cr]) => {
+        contract = c;
+        // attach latest compliance score (if available) so the UI can render the seal
+        if (cr && typeof cr.complianceScore !== 'undefined' && cr.complianceScore !== null) {
+          contract.complianceScore = cr.complianceScore;
+        }
+        clauses = cl; comments = cm;
         render();
       })
       .catch(() => {

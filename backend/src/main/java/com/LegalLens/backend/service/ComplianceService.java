@@ -83,6 +83,9 @@ public class ComplianceService {
         Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ResourceNotFoundException("Contract not found with id: " + contractId));
         return complianceResultRepository.findByContract(contract)
-                .orElseThrow(() -> new ResourceNotFoundException("Compliance result not found for contract: " + contractId));
+            .orElseGet(() -> new ComplianceResult(
+                contract,
+                0,
+                "Compliance analysis has not been run yet."));
     }
 }

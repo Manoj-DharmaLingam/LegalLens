@@ -2,39 +2,61 @@ package com.LegalLens.backend.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.LegalLens.backend.exception.ResourceNotFoundException;
 import com.LegalLens.backend.model.ClauseTemplate;
 import com.LegalLens.backend.model.ComplianceRule;
 import com.LegalLens.backend.model.User;
 import com.LegalLens.backend.repository.ClauseTemplateRepository;
+import com.LegalLens.backend.repository.CommentRepository;
 import com.LegalLens.backend.repository.ComplianceRuleRepository;
+import com.LegalLens.backend.repository.ContractRepository;
 import com.LegalLens.backend.repository.UserRepository;
 
 @Service
 public class AdminService {
 
+    private static final Logger logger = LoggerFactory.getLogger(AdminService.class);
+
     private final UserRepository userRepository;
     private final ClauseTemplateRepository clauseTemplateRepository;
     private final ComplianceRuleRepository complianceRuleRepository;
+    private final ContractRepository contractRepository;
+    private final CommentRepository commentRepository;
 
     public AdminService(UserRepository userRepository,
                         ClauseTemplateRepository clauseTemplateRepository,
-                        ComplianceRuleRepository complianceRuleRepository) {
+                        ComplianceRuleRepository complianceRuleRepository,
+                        ContractRepository contractRepository,
+                        CommentRepository commentRepository) {
         this.userRepository = userRepository;
         this.clauseTemplateRepository = clauseTemplateRepository;
         this.complianceRuleRepository = complianceRuleRepository;
+        this.contractRepository = contractRepository;
+        this.commentRepository = commentRepository;
     }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    @Transactional
     public void deleteUser(long id) {
-        if (!userRepository.existsById(id)) {
-            throw new ResourceNotFoundException("I go through the DB Guess what? I cant find the user!!!: " + id);
+        logger.info("AdminService.deleteUser called with id={}", id);
+        boolean exists = userRepository.existsById(id);
+        logger.info("userRepository.existsById({}) => {}", id, exists);
+        if (!exists) {
+            throw new ResourceNotFoundException("User not found with id: " + id);
         }
+
+        int contractsDetached = contractRepository.clearUploadedByUser(id);
+        int commentsDetached = commentRepository.clearReviewerByUser(id);
+        logger.info("Detached {} contracts and {} comments from user id={}", contractsDetached, commentsDetached, id);
+
         userRepository.deleteById(id);
     }
 

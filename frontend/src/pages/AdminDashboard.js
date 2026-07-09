@@ -51,7 +51,13 @@
         `;
         document.querySelectorAll('#tab-users button[data-id]').forEach(btn => {
           btn.addEventListener('click', () => {
-            adminService.deleteUser(btn.dataset.id).then(() => { loaded.users = false; loadUsers(); message.success('User deleted'); }).catch(() => message.error('Failed to delete user'));
+            const id = Number(btn.dataset.id);
+            adminService.deleteUser(id)
+              .then(() => { loaded.users = false; loadUsers(); message.success('User deleted'); })
+              .catch((err) => {
+                console.error('Delete user failed:', err);
+                message.error(RenderHelpers.errorMessage(err, 'Failed to delete user'));
+              });
           });
         });
       })

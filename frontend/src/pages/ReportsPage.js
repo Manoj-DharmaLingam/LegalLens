@@ -14,10 +14,6 @@
       const highRisk = contracts.filter(c => RenderHelpers.riskClass(c.complianceScore ?? 0) === 'high').length;
 
       document.getElementById('report-stats').innerHTML = `
-        <div class="stat-card">
-          <div class="stat-label">Portfolio Health</div>
-          <div class="stat-value">${avg}%</div>
-        </div>
         <div class="stat-card accent-red">
           <div class="stat-label">High Risk Alerts</div>
           <div class="stat-value">${highRisk}</div>

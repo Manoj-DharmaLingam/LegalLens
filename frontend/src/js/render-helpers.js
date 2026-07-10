@@ -45,7 +45,7 @@ const RenderHelpers = {
   },
 
   riskTag(level) {
-    const cls = level === 'HIGH' ? 'tag-red' : (level === 'MEDIUM' ? 'tag-gold' : 'tag-sage');
+    const cls = level === 'HIGH' ? 'tag-red' : (level === 'MEDIUM' ? 'tag-gold' : (level === 'PENDING' ? 'tag-slate' : 'tag-sage'));
     return `<span class="tag ${cls}">${level}</span>`;
   },
 

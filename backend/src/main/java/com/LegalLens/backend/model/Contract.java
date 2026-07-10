@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name="contracts")
@@ -32,6 +33,9 @@ public class Contract {
     private LocalDateTime uploadDate;
 
     private String status;
+
+    @Transient
+    private Integer complianceScore;
 
     public Contract(){
         uploadDate = LocalDateTime.now();
@@ -79,6 +83,14 @@ public class Contract {
      public String getStatus() { 
         return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public Integer getComplianceScore() {
+        return complianceScore;
+    }
+
+    public void setComplianceScore(Integer complianceScore) {
+        this.complianceScore = complianceScore;
+    }
 
     public LocalDateTime getUploadDate() { 
         return uploadDate; }

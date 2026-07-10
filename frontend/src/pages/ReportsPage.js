@@ -11,7 +11,7 @@
     .then((contracts) => {
       const scored = contracts.filter(c => typeof c.complianceScore === 'number');
       const avg = scored.length ? Math.round(scored.reduce((a, c) => a + c.complianceScore, 0) / scored.length) : 0;
-      const highRisk = contracts.filter(c => RenderHelpers.riskClass(c.complianceScore ?? 0) === 'high').length;
+      const highRisk = scored.filter(c => RenderHelpers.riskClass(c.complianceScore) === 'high').length;
 
       document.getElementById('report-stats').innerHTML = `
         <div class="stat-card accent-red">
@@ -35,12 +35,13 @@
             <thead><tr><th>Contract Name</th><th>Type</th><th>Compliance Score</th><th>Risk Level</th><th></th></tr></thead>
             <tbody>
               ${contracts.map(c => {
-                const risk = RenderHelpers.riskClass(c.complianceScore ?? 0).toUpperCase();
+                const score = typeof c.complianceScore === 'number' ? c.complianceScore : null;
+                const risk = score === null ? 'PENDING' : RenderHelpers.riskClass(score).toUpperCase();
                 return `
                 <tr>
                   <td><strong>${RenderHelpers.escapeHtml(c.contractName)}</strong></td>
                   <td>${RenderHelpers.typeTag(c.contractType)}</td>
-                  <td style="min-width:130px;">${RenderHelpers.progressBar(c.complianceScore ?? 0)}</td>
+                  <td style="min-width:130px;">${score === null ? '<span class="tag tag-slate">Pending</span>' : RenderHelpers.progressBar(score)}</td>
                   <td>${RenderHelpers.riskTag(risk)}</td>
                   <td><a class="btn btn-outline btn-sm" href="./ContractDetails.html?id=${c.id}">Details</a></td>
                 </tr>

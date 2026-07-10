@@ -25,6 +25,7 @@
   --sage:       #55704f;
   --sage-soft:  #e2ead9;
   --slate:      #556072;
+  --register:#F5ECD7;
 
   /* type */
   --font-display: 'Fraunces', Georgia, serif;
@@ -278,7 +279,7 @@ table.ll-table{ width:100%; border-collapse:collapse; font-size:13px; }
 /* ---------- Auth pages ---------- */
 .auth-wrap{
   min-height:100vh; display:flex; align-items:center; justify-content:center;
-  background: var(--ink);
+  background: var(--register);
   background-image: radial-gradient(circle at 20% 15%, rgba(169,122,47,.10), transparent 45%),
                      radial-gradient(circle at 85% 80%, rgba(156,59,48,.10), transparent 45%);
   padding: 24px;
